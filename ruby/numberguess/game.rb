@@ -1,9 +1,11 @@
 # Simple Pick a Number Game
 
+# create a random number
 def generate_number(max)
     return (rand() * max).to_i
 end
 
+# play a round of guess the number
 def play_round()
     print("What is your name? ")
     name = gets.chomp
@@ -13,6 +15,8 @@ def play_round()
     print("\nI am thinking of a number between 1 and #{max_num}. \nWhat is it?")
     tries = 0
     win = false
+
+    # only allow 8 tries for now
     while tries < 8
         if tries == 0
             print("\nYour guess: ")
@@ -31,6 +35,7 @@ def play_round()
             print("Sorry, the number is lower than #{guess}.\n")
         end     
     end
+
     # assuming we are beyond 8 guesses
     if !win
         print("\nYou did not guess in the number of times required.")
@@ -39,4 +44,5 @@ def play_round()
     end
 end
 
+# start!
 play_round()
