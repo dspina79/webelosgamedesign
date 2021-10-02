@@ -37,7 +37,7 @@ def play_round()
             print("Sorry, the number is lower than #{guess}.\n")
         end     
     end
-
+    
     # assuming we are beyond 8 guesses
     if !win
         print("\nYou did not guess in the number of times required.")
