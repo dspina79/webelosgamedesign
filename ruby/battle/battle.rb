@@ -22,7 +22,7 @@ def play_round(p1Cards, p2Cards)
 end
 
 
-def game()
+def game(verbose_output)
     player1_cards = []
     player2_cards = []
     suit_deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 100]
@@ -47,7 +47,7 @@ def game()
     end
 
     rounds = 1
-    while player1_cards.size() > 0 && player2_cards.size() > 0 do 
+    while rounds <= 100 && player1_cards.size() > 0 && player2_cards.size() > 0 do 
         round_result = play_round(player1_cards, player2_cards)
         player1_cards = round_result[0]
         player2_cards = round_result[1]
@@ -55,10 +55,15 @@ def game()
         #puts "Player 2: #{player2_cards.size()}"
         rounds += 1
     end
-    
-    puts "After #{rounds} rounds."
-    puts "Player 1: #{player1_cards.size()}"
-    puts "Player 2: #{player2_cards.size()}"
+    if verbose_output
+        puts "After #{rounds} rounds."
+        puts "Player 1: #{player1_cards.size()}"
+        puts "Player 2: #{player2_cards.size()}"
+    else
+        puts rounds
+    end
 end
 
-game()
+200.times do 
+    game(false)
+end
