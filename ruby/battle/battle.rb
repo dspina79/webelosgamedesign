@@ -7,17 +7,17 @@ def play_round(p1Cards, p2Cards)
         p2Card = p2Cards.pop()
 
         if p1Card >= p2Card
-            puts "Player 1 wins"
+            #puts "Player 1 wins"
             player1_pile.push(p1Card)
             player1_pile.push(p2Card)
         else
-            puts "Player 2 wins"
+            #puts "Player 2 wins"
             player2_pile.push(p2Card)
             player2_pile.push(p1Card)
         end
     end
-    p1Cards.push(player1_pile)
-    p2Cards.push(player2_pile)
+    p1Cards += player1_pile
+    p2Cards += player2_pile
     return [p1Cards, p2Cards]
 end
 
@@ -45,11 +45,20 @@ def game()
         end
         p1 = !p1
     end
-    puts player1_cards.size()
-    puts player2_cards.size()
-    round_result = play_round(player1_cards, player2_cards)
-    puts round_result[0].size()
-    puts round_result[1].size()
+
+    rounds = 1
+    while player1_cards.size() > 0 && player2_cards.size() > 0 do 
+        round_result = play_round(player1_cards, player2_cards)
+        player1_cards = round_result[0]
+        player2_cards = round_result[1]
+        #puts "Player 1: #{player1_cards.size()}"
+        #puts "Player 2: #{player2_cards.size()}"
+        rounds += 1
+    end
+    
+    puts "After #{rounds} rounds."
+    puts "Player 1: #{player1_cards.size()}"
+    puts "Player 2: #{player2_cards.size()}"
 end
 
 game()
